@@ -1,0 +1,121 @@
+{
+  "info": {
+    "name": "Grocery Store Management API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://127.0.0.1:8000"
+    },
+    {
+      "key": "token",
+      "value": ""
+    }
+  ],
+  "item": [
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/api/health/"
+      }
+    },
+    {
+      "name": "Register Customer",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"username\": \"riya\", \"full_name\": \"Riya Sharma\", \"email\": \"riya@example.com\", \"password\": \"StrongPass123!\", \"role\": \"customer\"}"
+        },
+        "url": "{{base_url}}/api/register/"
+      }
+    },
+    {
+      "name": "Login",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"username\": \"riya\", \"password\": \"StrongPass123!\"}"
+        },
+        "url": "{{base_url}}/api/login/"
+      }
+    },
+    {
+      "name": "List Items",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/api/items/"
+      }
+    },
+    {
+      "name": "Create Item (Admin)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"name\": \"Fresh Apples\", \"category\": \"Fruits\", \"brand\": \"Farm Fresh\", \"price\": \"120.00\", \"stock_quantity\": 50}"
+        },
+        "url": "{{base_url}}/api/items/"
+      }
+    },
+    {
+      "name": "My Orders",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "url": "{{base_url}}/api/orders/user/"
+      }
+    },
+    {
+      "name": "Place Order",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"delivery_address\": \"Jaipur, Rajasthan\", \"payment_method\": \"Cash on Delivery\", \"items\": [{\"item_id\": 1, \"quantity\": 2}]}"
+        },
+        "url": "{{base_url}}/api/orders/"
+      }
+    }
+  ]
+}
